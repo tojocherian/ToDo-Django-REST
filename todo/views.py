@@ -33,19 +33,22 @@ class IndexView(APIView):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+
 class TodoDetail(APIView):
     """
     Retrieve, update or delete a todo instance
     """
 
     def get(self, request, pk, format=None):
-        task = get_object_or_404(Todo, pk=pk) # fetching the details of one particular task
+        """
+        fetching the details of one particular task
+        """
+        task = get_object_or_404(Todo, pk=pk) 
         if request.user == task.user:
             serializer = TodoSerializer(task)
             return Response(serializer.data)
         else:
             return Response(status=status.HTTP_403_FORBIDDEN)
-
     
     def put(self, request, pk, format=None):
         """
