@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import IndexView,TodoDetail, logout_view
+from .views import IndexView,TodoDetail
 
 app_name = 'todo'
 
